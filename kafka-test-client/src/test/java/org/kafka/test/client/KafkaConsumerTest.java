@@ -50,11 +50,14 @@ public class KafkaConsumerTest {
 
 	@Test
 	public void dummyTest(){
+		System.out.println("dummy test");
 		assertTrue(true);
 	}
 
 	@Test
 	public void addSubscriberTest(KafkaTestConsumer kafkaTestConsumer) {
+
+		System.out.println("addSubscriberTest");
 
 		kafkaTestConsumer.addSubscriber(subscriber);
 
@@ -70,6 +73,8 @@ public class KafkaConsumerTest {
 
 	@Test
 	public void startPollingTest(KafkaTestConsumer kafkaTestConsumer) {
+
+		System.out.println("startPollingTest");
 
 		kafkaTestConsumer.startPolling();
 
