@@ -57,13 +57,19 @@ public class KafkaConsumerTest {
 		System.out.println("dummy test");
 		assertTrue(true);
 	}
-    
+
 
 	//@Ignore
 	@Test
 	public void startPollingTest() {
 
 		System.out.println("startPollingTest");
+
+		if(kafkaTestConsumer == null){
+		    System.out.println(" ------------ kafkaTestConsumer is null");
+        }else{
+            System.out.println(" ------------ kafkaTestConsumer is not null!");
+        }
 
 		kafkaTestConsumer.startPolling();
 
