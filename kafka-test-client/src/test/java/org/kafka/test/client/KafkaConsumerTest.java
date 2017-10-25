@@ -16,7 +16,6 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 
 @RunWith(Arquillian.class)
-@DefaultDeployment
 public class KafkaConsumerTest {
 
 	KafkaTestConsumer.Subscriber subscriber = new KafkaTestConsumer.Subscriber() {
