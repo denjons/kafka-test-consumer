@@ -45,9 +45,8 @@ public class KafkaConsumerTest {
 
 	@Deployment
 	public static WebArchive deploy() {
-		return ShrinkWrap.create(WebArchive.class).addClasses(KafkaTestConsumer.class, SocketSubscriber.class);
-
-		//.addPackage("org.kafka.test.client");
+		return ShrinkWrap.create(WebArchive.class)//.addClasses(KafkaTestConsumer.class, SocketSubscriber.class);
+			.addPackage("org.kafka.test.client");
 	}
 
 	@Test
