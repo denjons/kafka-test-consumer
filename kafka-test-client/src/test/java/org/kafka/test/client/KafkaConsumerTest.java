@@ -1,5 +1,7 @@
 package org.kafka.test.client;
 
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -65,9 +67,30 @@ public class KafkaConsumerTest {
 		kafkaTestConsumer.addSubscriber(deadSubscriber);
 
 		kafkaTestConsumer.addSubscriber(subscriber);
+
+		System.out.println("Sending messages");
+
+		KafkaProducer producer = new KafkaProducer(kafkaTestConsumer.getProperties());
+
+		try{
+
+			for(int i = 0; i < 100; i++){
+				ProducerRecord record = new ProducerRecord("kafka_test", String.valueOf(i), "test message "+i);
+					producer.send(record);
+					System.out.println("message sent to topic: kafka_test, round robin: "+i);
+			}
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}finally {
+			producer.close();
+		}
+
+
 	}
 
-
-
-
 }
+
+
+
+

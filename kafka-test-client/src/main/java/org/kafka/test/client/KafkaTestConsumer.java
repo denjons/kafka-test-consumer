@@ -33,6 +33,10 @@ public class KafkaTestConsumer {
         subscribers = newSubscribers;
     }
 
+    public Properties getProperties(){
+        return properties;
+    }
+
     @PostConstruct
     public void init(){
         properties = new Properties();
