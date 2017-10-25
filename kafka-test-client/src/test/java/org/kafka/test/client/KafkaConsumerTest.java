@@ -57,6 +57,7 @@ public class KafkaConsumerTest {
 
 		kafkaTestConsumer.addSubscriber(subscriber);
 
+		// subscriber should be removed
 		assertEquals(2, kafkaTestConsumer.getSubscribers().size());
 
 	}
