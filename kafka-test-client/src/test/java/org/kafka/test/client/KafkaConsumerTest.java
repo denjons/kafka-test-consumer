@@ -5,6 +5,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.jboss.arquillian.junit.Arquillian;
 import org.wildfly.swarm.arquillian.DefaultDeployment;
@@ -45,7 +46,9 @@ public class KafkaConsumerTest {
 
 	@Deployment
 	public static WebArchive deploy() {
-		return ShrinkWrap.create(WebArchive.class).addPackage("org.kafka.test.client");
+		return ShrinkWrap.create(WebArchive.class).addClasses(KafkaTestConsumer.class, SocketSubscriber.class);
+
+		//.addPackage("org.kafka.test.client");
 	}
 
 	@Test
@@ -54,6 +57,7 @@ public class KafkaConsumerTest {
 		assertTrue(true);
 	}
 
+	//@Ignore
 	@Test
 	public void addSubscriberTest(KafkaTestConsumer kafkaTestConsumer) {
 
@@ -71,6 +75,7 @@ public class KafkaConsumerTest {
 	}
 
 
+	//@Ignore
 	@Test
 	public void startPollingTest(KafkaTestConsumer kafkaTestConsumer) {
 
