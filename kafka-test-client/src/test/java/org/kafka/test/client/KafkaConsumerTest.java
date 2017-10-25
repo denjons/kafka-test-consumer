@@ -3,13 +3,13 @@ package org.kafka.test.client;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
-import org.jboss.arquillian.junit.Arquillian;
-import org.wildfly.swarm.arquillian.DefaultDeployment;
 import org.junit.Test;
+
+import javax.inject.Inject;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
@@ -43,6 +43,9 @@ public class KafkaConsumerTest {
 		}
 	};
 
+	@Inject
+    KafkaTestConsumer kafkaTestConsumer;
+
 	@Deployment
 	public static WebArchive deploy() {
 		return ShrinkWrap.create(WebArchive.class)//.addClasses(KafkaTestConsumer.class, SocketSubscriber.class);
@@ -54,28 +57,11 @@ public class KafkaConsumerTest {
 		System.out.println("dummy test");
 		assertTrue(true);
 	}
+    
 
 	//@Ignore
 	@Test
-	public void addSubscriberTest(KafkaTestConsumer kafkaTestConsumer) {
-
-		System.out.println("addSubscriberTest");
-
-		kafkaTestConsumer.addSubscriber(subscriber);
-
-		kafkaTestConsumer.addSubscriber(deadSubscriber);
-
-		kafkaTestConsumer.addSubscriber(subscriber);
-
-		// subscriber should be removed
-		assertEquals(2, kafkaTestConsumer.getSubscribers().size());
-
-	}
-
-
-	//@Ignore
-	@Test
-	public void startPollingTest(KafkaTestConsumer kafkaTestConsumer) {
+	public void startPollingTest() {
 
 		System.out.println("startPollingTest");
 
