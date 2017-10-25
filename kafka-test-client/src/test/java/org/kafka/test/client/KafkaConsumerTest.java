@@ -9,8 +9,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 
-import javax.inject.Inject;
-
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
@@ -43,8 +41,7 @@ public class KafkaConsumerTest {
 		}
 	};
 
-	@Inject
-    KafkaTestConsumer kafkaTestConsumer;
+
 
 	@Deployment
 	public static WebArchive deploy() {
@@ -63,6 +60,10 @@ public class KafkaConsumerTest {
 	//@Ignore
 	@Test
 	public void startPollingTest() {
+
+        KafkaTestConsumer kafkaTestConsumer = new KafkaTestConsumer();
+
+        kafkaTestConsumer.init();
 
 		System.out.println("startPollingTest");
 
