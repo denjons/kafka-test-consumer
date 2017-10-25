@@ -6,13 +6,13 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.ejb.Startup;
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
+
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-@Startup
+
 @ApplicationScoped
 public class KafkaTestConsumer {
 
