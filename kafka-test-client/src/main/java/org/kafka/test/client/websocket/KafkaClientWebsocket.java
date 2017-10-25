@@ -1,5 +1,8 @@
 package org.kafka.test.client.websocket;
 
+import org.kafka.test.client.KafkaTestConsumer;
+import org.kafka.test.client.SocketSubscriber;
+
 import javax.inject.Inject;
 //import javax.inject.Inject;
 import javax.websocket.CloseReason;
@@ -14,6 +17,9 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/speedlayer")
 public class KafkaClientWebsocket {
 
+    @Inject
+    KafkaTestConsumer kafkaTestConsumer;
+
 
     @OnMessage
     public String hello(String message) {
@@ -24,6 +30,9 @@ public class KafkaClientWebsocket {
     @OnOpen
     public void myOnOpen(Session session, EndpointConfig config) {
         System.out.println("WebSocket opened: " + session.getId());
+        SocketSubscriber socketSubscriber = new SocketSubscriber(session);
+        kafkaTestConsumer.addSubscriber(socketSubscriber);
+
     }
 
     @OnClose

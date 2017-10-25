@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 
-public class SocketSubscriber implements SubscriberService.Subscriber {
+public class SocketSubscriber implements KafkaTestConsumer.Subscriber {
 
     Session session;
 
@@ -25,6 +25,6 @@ public class SocketSubscriber implements SubscriberService.Subscriber {
 
     @Override
     public boolean isAlive() {
-        return session.isOpen();
+        return session != null && session.isOpen();
     }
 }
