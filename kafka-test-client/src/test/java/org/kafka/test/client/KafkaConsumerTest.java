@@ -49,7 +49,12 @@ public class KafkaConsumerTest {
 	}
 
 	@Test
-	public void testAddSubscriber(KafkaTestConsumer kafkaTestConsumer) {
+	public void dummyTest(){
+		assertTrue(true);
+	}
+
+	@Test
+	public void addSubscriberTest(KafkaTestConsumer kafkaTestConsumer) {
 
 		kafkaTestConsumer.addSubscriber(subscriber);
 
@@ -64,7 +69,7 @@ public class KafkaConsumerTest {
 
 
 	@Test
-	public void testStartPolling(KafkaTestConsumer kafkaTestConsumer) {
+	public void startPollingTest(KafkaTestConsumer kafkaTestConsumer) {
 
 		kafkaTestConsumer.startPolling();
 
