@@ -33,6 +33,10 @@ public class KafkaTestConsumer {
         subscribers = newSubscribers;
     }
 
+    public ArrayList<Subscriber> getSubscribers() {
+        return subscribers;
+    }
+
     public Properties getProperties(){
         return properties;
     }

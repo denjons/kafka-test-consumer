@@ -10,6 +10,8 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.wildfly.swarm.arquillian.DefaultDeployment;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 
 @RunWith(Arquillian.class)
@@ -54,6 +56,9 @@ public class KafkaConsumerTest {
 		kafkaTestConsumer.addSubscriber(deadSubscriber);
 
 		kafkaTestConsumer.addSubscriber(subscriber);
+
+		assertEquals(2, kafkaTestConsumer.getSubscribers().size());
+
 	}
 
 
@@ -85,6 +90,8 @@ public class KafkaConsumerTest {
 		}finally {
 			producer.close();
 		}
+
+		assertEquals(2, kafkaTestConsumer.getSubscribers().size());
 
 
 	}
