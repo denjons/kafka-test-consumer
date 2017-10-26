@@ -5,13 +5,18 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.jboss.shrinkwrap.resolver.api.maven.ScopeType;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 import org.kafka.test.client.DummyService;
 import org.kafka.test.client.KafkaTestConsumer;
 import org.wildfly.swarm.arquillian.DefaultDeployment;
+
+import java.io.File;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
@@ -50,8 +55,18 @@ public class KafkaConsumerTest {
 
 	@Deployment
 	public static WebArchive deploy() {
-		return ShrinkWrap.create(WebArchive.class)
-            .addPackage("org.kafka.test.client");
+
+        File[] libs = Maven.resolver()
+                .loadPomFromFile("pom.xml").resolve("org.apache.kafka:kafka-clients")
+                .withTransitivity().asFile();
+
+        WebArchive archive = ShrinkWrap.create(WebArchive.class)
+                .addPackage("org.kafka.test.client")
+                .addAsLibraries(libs);
+
+
+        return archive;
+
 	}
 
 	@Test
@@ -70,28 +85,15 @@ public class KafkaConsumerTest {
 	@Test
 	public void startPollingTest(KafkaTestConsumer kafkaTestConsumer) {
 
-        KafkaTestConsumer kafkaTestConsumer2 = new KafkaTestConsumer();
-
-		if(kafkaTestConsumer == null){
-		    System.out.println(" ------------ kafkaTestConsumer is null");
-        }else{
-            System.out.println(" ------------ kafkaTestConsumer is not null!");
-        }
-
-        kafkaTestConsumer2.init();
-
-        kafkaTestConsumer.init();
-
         System.out.println("startPollingTest");
 
+        kafkaTestConsumer.init();
 
 		kafkaTestConsumer.addSubscriber(subscriber);
 
 		kafkaTestConsumer.addSubscriber(deadSubscriber);
 
 		kafkaTestConsumer.addSubscriber(subscriber);
-
-		/*
 
         kafkaTestConsumer.startPolling();
 
@@ -111,7 +113,7 @@ public class KafkaConsumerTest {
 			e.printStackTrace();
 		}finally {
 			producer.close();
-		}*/
+		}
 
 		assertEquals(2, kafkaTestConsumer.getSubscribers().size());
 

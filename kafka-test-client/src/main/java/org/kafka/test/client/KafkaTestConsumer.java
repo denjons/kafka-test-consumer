@@ -48,8 +48,11 @@ public class KafkaTestConsumer {
     public void init(){
         properties = new Properties();
         properties.setProperty("bootstrap.servers", "localhost:9092, localhost:9093");
-        properties.setProperty("kqey.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        properties.setProperty("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.setProperty("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
+        properties.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        properties.setProperty("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
+
 
         kafkaConsumer = new KafkaConsumer(properties);
         ArrayList<String> topics = new ArrayList<String>();
