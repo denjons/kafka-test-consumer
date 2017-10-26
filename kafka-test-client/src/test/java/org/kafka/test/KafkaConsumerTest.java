@@ -66,7 +66,7 @@ public class KafkaConsumerTest {
     }
 
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void startPollingTest(KafkaTestConsumer kafkaTestConsumer) {
 
