@@ -75,14 +75,16 @@ public class KafkaConsumerTest {
             System.out.println(" ------------ kafkaTestConsumer is not null!");
         }
 
-        /*
-		kafkaTestConsumer.startPolling();
-
+        
 		kafkaTestConsumer.addSubscriber(subscriber);
 
 		kafkaTestConsumer.addSubscriber(deadSubscriber);
 
 		kafkaTestConsumer.addSubscriber(subscriber);
+
+		/*
+
+        kafkaTestConsumer.startPolling();
 
 		System.out.println("Sending messages");
 

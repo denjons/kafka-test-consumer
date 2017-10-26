@@ -29,6 +29,12 @@
       <artifactId>kafka-clients</artifactId>
       <version>0.11.0.1</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>cdi</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
