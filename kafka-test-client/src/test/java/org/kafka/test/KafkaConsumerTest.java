@@ -78,6 +78,8 @@ public class KafkaConsumerTest {
             System.out.println(" ------------ kafkaTestConsumer is not null!");
         }
 
+        kafkaTestConsumer2.init();
+
         kafkaTestConsumer.init();
 
         System.out.println("startPollingTest");
