@@ -6,8 +6,10 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.Test;
+import org.kafka.test.client.DummyService;
 import org.kafka.test.client.KafkaTestConsumer;
 import org.wildfly.swarm.arquillian.DefaultDeployment;
 
@@ -58,8 +60,13 @@ public class KafkaConsumerTest {
 		assertTrue(true);
 	}
 
+	@Test
+    public void dummyServiceTest(DummyService service){
+        service.doSomething();
+    }
 
-	//@Ignore
+
+	@Ignore
 	@Test
 	public void startPollingTest() {
 
