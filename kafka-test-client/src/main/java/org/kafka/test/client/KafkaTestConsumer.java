@@ -55,7 +55,7 @@ public class KafkaTestConsumer {
 
 
         kafkaConsumer = new KafkaConsumer(properties);
-        ArrayList<String> topics = new ArrayList<String>();
+        topics = new ArrayList<String>();
         topics.add("kafka_test");
     }
 
