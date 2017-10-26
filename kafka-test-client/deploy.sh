@@ -11,4 +11,4 @@ fi
 
 echo "starting new process in background"
 
-nohup java -jar -Dswarm.bind.address=172.31.22.34 -Dswarm.port.offset=0101 -jar kafka-test-client-swarm.jar
+nohup java -jar -Dswarm.bind.address=172.31.22.34 -Dswarm.port.offset=0101 -jar kafka-test-client-swarm.jar &
