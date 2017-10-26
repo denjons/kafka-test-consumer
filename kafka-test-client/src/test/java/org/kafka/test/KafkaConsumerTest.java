@@ -1,4 +1,4 @@
-package org.kafka.test.client;
+package org.kafka.test;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -8,6 +8,8 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 import org.junit.Test;
+import org.kafka.test.client.KafkaTestConsumer;
+import org.wildfly.swarm.arquillian.DefaultDeployment;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
@@ -43,11 +45,11 @@ public class KafkaConsumerTest {
 
 
 
+
 	@Deployment
 	public static WebArchive deploy() {
 		return ShrinkWrap.create(WebArchive.class)
-            .addClasses(KafkaTestConsumer.class, SocketSubscriber.class);
-			//.addPackage("org.kafka.test.client");
+            .addPackage("org.kafka.test.client");
 	}
 
 	@Test
@@ -67,6 +69,7 @@ public class KafkaConsumerTest {
 
 		System.out.println("startPollingTest");
 
+		/*
 		if(kafkaTestConsumer == null){
 		    System.out.println(" ------------ kafkaTestConsumer is null");
         }else{
@@ -97,7 +100,7 @@ public class KafkaConsumerTest {
 			e.printStackTrace();
 		}finally {
 			producer.close();
-		}
+		}*/
 
 		assertEquals(2, kafkaTestConsumer.getSubscribers().size());
 
