@@ -61,9 +61,9 @@ public class KafkaConsumerTest {
 
 	//@Ignore
 	@Test
-	public void startPollingTest(KafkaTestConsumer kafkaTestConsumer) {
+	public void startPollingTest() {
 
-
+        KafkaTestConsumer kafkaTestConsumer = new KafkaTestConsumer();
 
 		if(kafkaTestConsumer == null){
 		    System.out.println(" ------------ kafkaTestConsumer is null");
