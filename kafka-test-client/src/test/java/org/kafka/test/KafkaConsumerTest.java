@@ -115,6 +115,9 @@ public class KafkaConsumerTest {
 					System.out.println("Message sent to topic: kafka_test, round robin: "+i);
 			}
 
+			System.out.println("Waiting one second.");
+			Thread.sleep(1000);
+
 		}catch (Exception e){
 			e.printStackTrace();
 		}finally {
