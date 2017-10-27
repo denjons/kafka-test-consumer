@@ -59,8 +59,12 @@ public class KafkaTestConsumer {
     }
 
     @PreDestroy
-    private void killPollingThread(){
+    public void killPollingThread(){
         pollingThread.interrupt();
+        if(kafkaConsumer != null){
+            kafkaConsumer.close();
+        }
+
     }
 
     public void startPolling(){

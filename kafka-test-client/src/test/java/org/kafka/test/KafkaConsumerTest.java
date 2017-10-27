@@ -17,6 +17,7 @@ import org.kafka.test.client.KafkaTestConsumer;
 import org.wildfly.swarm.arquillian.DefaultDeployment;
 
 import java.io.File;
+import java.util.Properties;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
@@ -99,7 +100,13 @@ public class KafkaConsumerTest {
 
 		System.out.println("Sending messages");
 
-		KafkaProducer producer = new KafkaProducer(kafkaTestConsumer.getProperties());
+
+
+        Properties properties = new Properties();
+        properties.setProperty("bootstrap.servers", "localhost:9092, localhost:9093");
+        properties.setProperty("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        properties.setProperty("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
+        KafkaProducer producer = new KafkaProducer(properties);
 
 		try{
 
@@ -113,6 +120,7 @@ public class KafkaConsumerTest {
 			e.printStackTrace();
 		}finally {
 			producer.close();
+            kafkaTestConsumer.killPollingThread();
 		}
 
 		assertEquals(2, kafkaTestConsumer.getSubscribers().size());
