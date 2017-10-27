@@ -69,14 +69,16 @@ public class KafkaTestConsumer {
 
     public void startPolling(){
 
-        kafkaConsumer.subscribe(topics);
+    System.out.println(" ---- Start polling");
 
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                kafkaConsumer.subscribe(topics);
                 try{
 
                     while(true){
+                        System.out.println(" ---- Polling message");
                         ConsumerRecords<String, String> consumerRecord = kafkaConsumer.poll(100);
                         consumerRecord.iterator().forEachRemaining(this::feedSubscriber);
                     }
@@ -88,6 +90,7 @@ public class KafkaTestConsumer {
             }
 
             public void feedSubscriber(ConsumerRecord message){
+                System.out.println(" ---- Feeding subscriber");
                 subscribers.stream().filter(e -> e.isAlive()).forEach( e -> e.accept(message.value().toString()));
             }
         };
