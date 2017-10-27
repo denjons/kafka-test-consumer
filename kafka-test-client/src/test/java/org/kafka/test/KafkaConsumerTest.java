@@ -85,7 +85,7 @@ public class KafkaConsumerTest {
 	@Test
 	public void startPollingTest(KafkaTestConsumer kafkaTestConsumer) {
 
-        System.out.println("startPollingTest");
+        System.out.println(" ----- startPollingTest");
 
         kafkaTestConsumer.init();
 
