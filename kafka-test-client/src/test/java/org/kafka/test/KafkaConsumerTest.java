@@ -29,7 +29,7 @@ public class KafkaConsumerTest {
 	KafkaTestConsumer.Subscriber subscriber = new KafkaTestConsumer.Subscriber() {
 		@Override
 		public void accept(String message) {
-			System.out.println("acceoted "+message);
+			System.out.println("accepted "+message);
 		}
 
 		@Override
@@ -101,7 +101,6 @@ public class KafkaConsumerTest {
 		System.out.println("Sending messages");
 
 
-
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers", "localhost:9092, localhost:9093");
         properties.setProperty("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -113,7 +112,7 @@ public class KafkaConsumerTest {
 			for(int i = 0; i < 100; i++){
 				ProducerRecord record = new ProducerRecord("kafka_test", String.valueOf(i), "test message "+i);
 					producer.send(record);
-					System.out.println("message sent to topic: kafka_test, round robin: "+i);
+					System.out.println("Message sent to topic: kafka_test, round robin: "+i);
 			}
 
 		}catch (Exception e){
