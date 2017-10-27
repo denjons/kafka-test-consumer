@@ -50,6 +50,7 @@ public class KafkaTestConsumer {
         properties.setProperty("bootstrap.servers", "localhost:9092, localhost:9093");
         properties.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         properties.setProperty("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
+        properties.setProperty("group.id", "kafka-test-group");
 
 
         kafkaConsumer = new KafkaConsumer(properties);
